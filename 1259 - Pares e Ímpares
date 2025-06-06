@@ -1,0 +1,37 @@
+using System;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        // Lê a quantidade de números
+        int N = int.Parse(Console.ReadLine());
+
+        // Inicializa as listas para pares e ímpares
+        var pares = new System.Collections.Generic.List<int>();
+        var impares = new System.Collections.Generic.List<int>();
+
+        // Lê os N números e os separa entre pares e ímpares
+        for (int i = 0; i < N; i++)
+        {
+            int num = int.Parse(Console.ReadLine());
+            if (num % 2 == 0)
+                pares.Add(num);
+            else
+                impares.Add(num);
+        }
+
+        // Ordena os pares em ordem crescente
+        pares.Sort();
+
+        // Ordena os ímpares em ordem decrescente
+        impares.Sort((a, b) => b.CompareTo(a));
+
+        // Combina os pares e ímpares e imprime os resultados
+        foreach (var num in pares.Concat(impares))
+        {
+            Console.WriteLine(num);
+        }
+    }
+}
