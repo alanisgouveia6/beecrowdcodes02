@@ -1,0 +1,16 @@
+SELECT 
+    p.year,
+    u_sender.name AS sender,
+    u_receiver.name AS receiver
+FROM 
+    packages p
+JOIN 
+    users u_sender ON p.id_user_sender = u_sender.id
+JOIN 
+    users u_receiver ON p.id_user_receiver = u_receiver.id
+WHERE 
+    (p.color = 'blue' OR p.year = 2015)
+    AND u_sender.address != 'Taiwan'
+    AND u_receiver.address != 'Taiwan'
+ORDER BY 
+    p.year DESC;
