@@ -1,0 +1,58 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int N = int.Parse(Console.ReadLine());
+        for (int i = 0; i < N; i++)
+        {
+            string[] parts = Console.ReadLine().Split(' ');
+
+            int N1 = int.Parse(parts[0]);
+            int D1 = int.Parse(parts[2]);
+            string op = parts[3];
+            int N2 = int.Parse(parts[4]);
+            int D2 = int.Parse(parts[6]);
+
+            long numerador = 0, denominador = 0;
+
+            switch (op)
+            {
+                case "+":
+                    numerador = N1 * D2 + N2 * D1;
+                    denominador = D1 * D2;
+                    break;
+                case "-":
+                    numerador = N1 * D2 - N2 * D1;
+                    denominador = D1 * D2;
+                    break;
+                case "*":
+                    numerador = N1 * N2;
+                    denominador = D1 * D2;
+                    break;
+                case "/":
+                    numerador = N1 * D2;
+                    denominador = N2 * D1;
+                    break;
+            }
+
+            long gcd = MDC(Math.Abs(numerador), Math.Abs(denominador));
+            long numSimp = numerador / gcd;
+            long denSimp = denominador / gcd;
+
+            Console.WriteLine($"{numerador}/{denominador} = {numSimp}/{denSimp}");
+        }
+    }
+
+    static long MDC(long a, long b)
+    {
+        while (b != 0)
+        {
+            long temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return a;
+    }
+}
