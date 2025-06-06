@@ -1,0 +1,21 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        string line;
+        while ((line = Console.ReadLine()) != null)
+        {
+            if (line.Trim() == "")
+                break;
+
+            string[] parts = line.Split(' ');
+            long hashmat = long.Parse(parts[0]);
+            long oponente = long.Parse(parts[1]);
+
+            long diff = Math.Abs(hashmat - oponente);
+            Console.WriteLine(diff);
+        }
+    }
+}
