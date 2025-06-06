@@ -1,0 +1,17 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        string palavra;
+        // Enquanto houver entrada (pode ser via EOF)
+        while ((palavra = Console.ReadLine()) != null)
+        {
+            if (palavra.Length >= 10)
+                Console.WriteLine("palavrao");
+            else
+                Console.WriteLine("palavrinha");
+        }
+    }
+}
