@@ -1,0 +1,25 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // Leitura dos dados da primeira peça
+        string[] dados1 = Console.ReadLine().Split(' ');
+        int codigo1 = int.Parse(dados1[0]);
+        int quantidade1 = int.Parse(dados1[1]);
+        double valorUnitario1 = double.Parse(dados1[2]);
+
+        // Leitura dos dados da segunda peça
+        string[] dados2 = Console.ReadLine().Split(' ');
+        int codigo2 = int.Parse(dados2[0]);
+        int quantidade2 = int.Parse(dados2[1]);
+        double valorUnitario2 = double.Parse(dados2[2]);
+
+        // Cálculo do valor total a pagar
+        double valorTotal = (quantidade1 * valorUnitario1) + (quantidade2 * valorUnitario2);
+
+        // Exibição do resultado formatado
+        Console.WriteLine($"VALOR A PAGAR: R$ {valorTotal:F2}");
+    }
+}
