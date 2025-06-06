@@ -1,0 +1,25 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // Ler o nome do vendedor
+        string nome = Console.ReadLine();
+        
+        // Ler o salário fixo
+        double salarioFixo = double.Parse(Console.ReadLine());
+        
+        // Ler o total de vendas
+        double totalVendas = double.Parse(Console.ReadLine());
+        
+        // Calcular a comissão (15% das vendas)
+        double comissao = totalVendas * 0.15;
+        
+        // Calcular o total a receber (salário fixo + comissão)
+        double total = salarioFixo + comissao;
+        
+        // Imprimir o total formatado com 2 casas decimais
+        Console.WriteLine($"TOTAL = R$ {total:F2}");
+    }
+}
