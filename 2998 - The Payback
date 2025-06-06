@@ -1,0 +1,26 @@
+WITH AccumulatedOperations AS (
+    SELECT 
+        o.client_id,
+        o.month,
+        SUM(o.profit) OVER (PARTITION BY o.client_id ORDER BY o.month) AS accumulated_profit
+    FROM operations o
+),
+PaybackMonth AS (
+    SELECT 
+        c.name,
+        c.investment,
+        ao.month AS month_of_payback,
+        ao.accumulated_profit - c.investment AS return,
+        ROW_NUMBER() OVER (PARTITION BY ao.client_id ORDER BY ao.month) AS rn
+    FROM AccumulatedOperations ao
+    JOIN clients c ON ao.client_id = c.id
+    WHERE ao.accumulated_profit >= c.investment
+)
+SELECT 
+    p.name,
+    p.investment,
+    p.month_of_payback,
+    p.return
+FROM PaybackMonth p
+WHERE p.rn = 1
+ORDER BY p.return DESC;
