@@ -1,0 +1,47 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // Leitura do dia de início
+        string[] diaInicio = Console.ReadLine().Split(' ');
+        int diaI = int.Parse(diaInicio[1]);
+
+        // Leitura do horário de início
+        string[] hmsInicio = Console.ReadLine().Split(new char[] { ' ', ':' }, StringSplitOptions.RemoveEmptyEntries);
+        int hI = int.Parse(hmsInicio[0]);
+        int mI = int.Parse(hmsInicio[1]);
+        int sI = int.Parse(hmsInicio[2]);
+
+        // Leitura do dia de fim
+        string[] diaFim = Console.ReadLine().Split(' ');
+        int diaF = int.Parse(diaFim[1]);
+
+        // Leitura do horário de fim
+        string[] hmsFim = Console.ReadLine().Split(new char[] { ' ', ':' }, StringSplitOptions.RemoveEmptyEntries);
+        int hF = int.Parse(hmsFim[0]);
+        int mF = int.Parse(hmsFim[1]);
+        int sF = int.Parse(hmsFim[2]);
+
+        // Converter tudo para segundos desde o começo do mês
+        int segundosInicio = ((diaI * 24 * 3600) + (hI * 3600) + (mI * 60) + sI);
+        int segundosFim = ((diaF * 24 * 3600) + (hF * 3600) + (mF * 60) + sF);
+
+        int duracaoSegundos = segundosFim - segundosInicio;
+
+        int dias = duracaoSegundos / (24 * 3600);
+        duracaoSegundos %= 24 * 3600;
+
+        int horas = duracaoSegundos / 3600;
+        duracaoSegundos %= 3600;
+
+        int minutos = duracaoSegundos / 60;
+        int segundos = duracaoSegundos % 60;
+
+        Console.WriteLine($"{dias} dia(s)");
+        Console.WriteLine($"{horas} hora(s)");
+        Console.WriteLine($"{minutos} minuto(s)");
+        Console.WriteLine($"{segundos} segundo(s)");
+    }
+}
